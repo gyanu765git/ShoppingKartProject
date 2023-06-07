@@ -1,0 +1,38 @@
+{% extends 'base_register_login.html' %}
+{% block content %}      
+
+<!--Register--> 
+<div class="container text-center">
+	<br>
+    <h2>SignUp</h2>
+	<br>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ signup_form.username.id_for_label }}">Username</label><br>
+            {{ signup_form.username }}
+        </div>
+        <div class="form-group">
+            <label for="{{ signup_form.email.id_for_label }}">Email</label><br>
+            {{ signup_form.email }}
+        </div>
+        <div class="form-group">
+            <label for="{{ signup_form.password1.id_for_label }}">Password</label><br>
+            {{ signup_form.password1 }}
+        </div>
+        <div class="form-group">
+            <label for="{{ signup_form.password2.id_for_label }}">Confirm Password</label><br>
+            {{ signup_form.password2 }}
+        </div>
+        <button class="btn btn-primary my-1" type="submit" style="border-radius: 4px;">Register</button>
+    </form>
+    <p>If you already have an account, <a href="/login">login</a> instead.</p>
+</div>
+
+
+
+
+
+
+
+{% endblock %}
