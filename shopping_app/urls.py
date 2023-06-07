@@ -4,8 +4,8 @@ from shopping_app import views
 
 
 urlpatterns = [
-    path('', views.Index.as_view(), name='homepage'),
-    path('store/', views.store , name='store'),
+    path('', views.HomeView.as_view(), name='homepage'),
+    path('stock/', views.ProductStock , name='stock'),
     path('cart/', views.Cart.as_view() , name='cart'),
     path('signup/',views.SignUp_Request, name='signup'),
     path('login/', views.Login_Request, name='login'),

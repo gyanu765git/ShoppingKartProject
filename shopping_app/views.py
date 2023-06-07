@@ -7,32 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib.auth.models import User
 
-class Index(View):
-
-    # def post(self , request):
-    #     product = request.POST.get('product')
-    #     remove = request.POST.get('remove')
-    #     cart = request.session.get('cart',{})
-    #     if cart:
-    #         quantity = cart.get(product)
-    #         if quantity:
-    #             if remove:
-    #                 if quantity<=1:
-    #                     cart.pop(product)
-    #                 else:
-    #                     cart[product]  = quantity-1
-    #             else:
-    #                 cart[product]  = quantity+1
-
-    #         else:
-    #             cart[product] = 1
-    #     else:
-    #         cart = {}
-    #         cart[product] = 1
-
-    #     request.session['cart'] = cart
-    #     print('cart' , request.session['cart'])
-    #     return redirect('homepage')
+class HomeView(View):
        
     def post(self, request):
         product = request.POST.get('product')
@@ -64,9 +39,9 @@ class Index(View):
 
 
     def get(self , request):
-        return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}') 
+        return HttpResponseRedirect(f'/stock{request.get_full_path()[1:]}') 
 
-def store(request):
+def ProductStock(request):
     cart = request.session.get('cart')
     if not cart:
         request.session['cart'] = {}
@@ -82,10 +57,6 @@ def store(request):
         'products': products,
         'categories': categories
     }
-    # data['products'] = products
-    # data['categories'] = categories
-
-    # print('you are : ', request.session.get('email'))
     return render(request, 'index.html', data) 
 
 
@@ -113,7 +84,6 @@ def SignUp_Request(request):
 		form = RegistrationForm(request.POST)
 		if form.is_valid():
 			user = form.save()
-			login(request, user)
 			messages.success(request, "Registration successful.")
 			return redirect('login')
 		messages.error(request, "Unsuccessful registration. Invalid information.")
